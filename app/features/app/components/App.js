@@ -68,20 +68,16 @@ class App extends Component<*> {
      * @returns {void}
      */
     _listenOnProtocolMessages(event, inputURL: string) {
-        let room;
-
         // Remove trailing slash if one exists.
-        if (inputURL.substr(-1) === '/') {
-            inputURL = inputURL.substr(0, inputURL.length - 1); // eslint-disable-line no-param-reassign
-        }
+        const room = inputURL.substr(-1) === '/' ? inputURL.substr(0, inputURL.length - 1) : inputURL;
 
         // To avoid potential phishing attacks, we allow only room to
         // be sent from the app link and use server from app settings.
-        if (inputURL.includes('/')) {
-            room = inputURL.split('/').pop();
-        } else {
-            room = inputURL;
-        }
+        // if (inputURL.includes('/')) {
+        //     room = inputURL.split('/').pop();
+        // } else {
+        //     room = inputURL;
+        // }
 
         const conference = createConferenceObjectFromURL(room);
 
