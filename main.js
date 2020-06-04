@@ -183,11 +183,13 @@ function createJitsiMeetWindow() {
 
     /**
      * This is for windows [win32]
-     * so when someone tries to enter something like jitsi://test
+     * so when someone tries to enter something like jitsi-meet://test
      *  while app is closed
      * it will trigger this event below
      */
-    handleProtocolCall(process.argv[2]);
+    if (process.platform === 'win32') {
+        handleProtocolCall(process.argv.pop());
+    }
 }
 
 /**
@@ -263,10 +265,10 @@ app.on('second-instance', (event, commandLine) => {
 
         /**
          * This is for windows [win32]
-         * so when someone tries to enter something like jitsi://test
+         * so when someone tries to enter something like jitsi-meet://test
          * while app is opened it will trigger protocol handler.
          */
-        handleProtocolCall(commandLine[2]);
+        handleProtocolCall(commandLine.pop());
     }
 });
 
@@ -295,7 +297,7 @@ if (isDev && process.platform === 'win32') {
 
 /**
  * This is for mac [darwin]
- * so when someone tries to enter something like jitsi://test
+ * so when someone tries to enter something like jitsi-meet://test
  * it will trigger this event below
  */
 app.on('open-url', (event, data) => {
