@@ -2,8 +2,9 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 const languages = {
-    en: { translation: require("./lang/en.json") }
-}
+    en: { translation: require("./lang/en.json") },
+    fr: { translation: require('./lang/fr.json') }
+};
 
 i18n
     .use(initReactI18next)
