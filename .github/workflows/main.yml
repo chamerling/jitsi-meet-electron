@@ -20,7 +20,8 @@ jobs:
           node-version: 12
 
       - name: Install Windows dependencies
-        run: npm install --global --production windows-build-tools
+        run: npm install --global --production windows-build-tools --vs2015
+        if: ${{matrix.os == "windows-latest" }}
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1.6.0
